@@ -1,0 +1,4 @@
+include README.md
+recursive-include octoprint_spoolmovementmonitor/templates *
+recursive-include octoprint_spoolmovementmonitor/translations *
+recursive-include octoprint_spoolmovementmonitor/static *

@@ -1,0 +1,79 @@
+<h4>{{ _('Spool Movement Monitor') }}</h4>
+<form class="form-horizontal">
+    <div class="control-group">
+        <label class="control-label">{{ _('Board Pin Mode:') }}</label>
+        <div class="controls" data-toggle="tooltip" title="{{ _('RPi pins numbered in Board mode or BCM mode?') }}">
+            <select class="select-mini" data-bind="value: settings.plugins.spoolmovementmonitor.mode">
+                <option value=0>{{ _('Board Mode') }}</option>
+                <option value=1>{{ _('BCM Mode') }}</option>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">{{ _('Input Sensor Pin:') }}</label>
+        <div class="controls" data-toggle="tooltip" title="{{ _('Which Raspberry Pi GPIO pin your switch is attached to (-1 disables the plugin)') }}">
+            <input type="number" step="any" min="0" class="input-mini text-right" data-bind="value: settings.plugins.spoolmovementmonitor.input_pin">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">{{ _('Input Sensor Debounce Time:') }}</label>
+        <div class="controls" data-toggle="tooltip" title="{{ _('When a sensor state change happens, wait for this amount of time to wait for the signal to stabilize.') }}">
+            <input type="number" step="any" min="0" class="input-mini text-right" data-bind="value: settings.plugins.spoolmovementmonitor.input_bounce">
+            <span class="add-on">ms</span>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">{{ _('Revolution Wait Time:') }}</label>
+        <div class="controls" data-toggle="tooltip" title="{{ _('Time to wait in seconds from the last movement detected until triggering a print pause.') }}">
+            <input type="number" step="any" min="0" class="input-mini text-right" data-bind="value: settings.plugins.spoolmovementmonitor.timeout_seconds">
+            <span class="add-on">seconds</span>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">{{ _('Out of filament GCODE:') }}</label>
+        <div class="controls">
+            <textarea rows="4" class="block" data-bind="value: settings.plugins.spoolmovementmonitor.no_filament_gcode"></textarea>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls" data-toggle="tooltip" title="{{ _('Beware that for some printers, pausing is incompatible with M600 (Filament change pause) as both will move the print head and it can resume at a different position as it paused.') }}">
+            <label class="checkbox">
+                <input type="checkbox" data-bind="checked: settings.plugins.spoolmovementmonitor.stopped_pause_print"> {{ _('Pause print when out of filament') }}
+            </label>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">{{ _('Indicator 1 Pin:') }}</label>
+        <div class="controls" data-toggle="tooltip" title="{{ _('Which Raspberry Pi GPIO pin your indicator LED 1 is attached to (-1 disables the display )') }}">
+            <input type="number" step="any" min="0" class="input-mini text-right" data-bind="value: settings.plugins.spoolmovementmonitor.indicator1_pin">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">{{ _('Indicator 2 Pin:') }}</label>
+        <div class="controls" data-toggle="tooltip" title="{{ _('Which Raspberry Pi GPIO pin your indicator LED 2 is attached to (-1 disables the display )') }}">
+            <input type="number" step="any" min="0" class="input-mini text-right" data-bind="value: settings.plugins.spoolmovementmonitor.indicator2_pin">
+        </div>
+    </div>
+	    <div class="control-group">
+        <label class="control-label">{{ _('Indicator 3 Pin:') }}</label>
+        <div class="controls" data-toggle="tooltip" title="{{ _('Which Raspberry Pi GPIO pin your indicator LED 3 is attached to (-1 disables the display )') }}">
+            <input type="number" step="any" min="0" class="input-mini text-right" data-bind="value: settings.plugins.spoolmovementmonitor.indicator3_pin">
+        </div>
+    </div>
+	    <div class="control-group">
+        <label class="control-label">{{ _('Indicator 4 Pin:') }}</label>
+        <div class="controls" data-toggle="tooltip" title="{{ _('Which Raspberry Pi GPIO pin your indicator LED 4 is attached to (-1 disables the display )') }}">
+            <input type="number" step="any" min="0" class="input-mini text-right" data-bind="value: settings.plugins.spoolmovementmonitor.indicator4_pin">
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls" data-toggle="tooltip" title="{{ _('With this option checked, the plugin will ignore subsequent reports of out of filament until the print is resumed again.') }}">
+            <label class="checkbox">
+                <input type="checkbox" data-bind="checked: settings.plugins.spoolmovementmonitor.send_gcode_only_once"> {{ _('Send GCODE only once when out of filament.') }}
+            </label>
+        </div>
+    </div>
+	<div>
+	Indicator 1: Always follows the input reed switch.<br />Indicator 2: Flickers with a time period of remaining time / 20 <br /> Indicator 3: Monitoring is active <br /> Indicator 4: Timeout has been triggered.
+	</div>
+</form>
